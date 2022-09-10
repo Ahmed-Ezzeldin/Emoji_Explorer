@@ -9,8 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            List(emojiList, id: \.self){ item in
+                NavigationLink {
+                    EmojiDetailsScreen(emoji: item)
+                } label: {
+                    EmojiItem(item: "\(item)")
+                }
+                
+            }
+            .navigationTitle("Emojis")
+        }
+        .navigationBarTitle(Text("Landmarks"))
+        
     }
 }
 
