@@ -7,21 +7,24 @@
 
 import SwiftUI
 
+
+
 struct ContentView: View {
+    private var emojis: [EmojiModel] = Bundle.main.decode2("emoji_data.json")
     var body: some View {
         NavigationView {
-            List(emojiList, id: \.self){ item in
+            List(emojis){ item in
+                
                 NavigationLink {
                     EmojiDetailsScreen(emoji: item)
                 } label: {
-                    EmojiItem(item: "\(item)")
+                    
+                    EmojiRowView(emoji: item)
                 }
-                
             }
             .navigationTitle("Emojis")
+            .navigationBarTitleDisplayMode(.large)
         }
-        .navigationBarTitle(Text("Landmarks"))
-        
     }
 }
 
